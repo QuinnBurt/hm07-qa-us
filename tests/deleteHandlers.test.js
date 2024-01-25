@@ -2,13 +2,36 @@
 const config = require('../config');
 
 //Testing DELETE api/v1/kits/:id - Deleting the kit
-let data;
-
+const createKitBody = {
+	"name": "Test Kit",
+    "cardId": 1
+}
+let kitId;
+//We create a new kit for testing purposes.
+async function createKit(){
+	try {
+		const response = await fetch(`${config.API_URL}/api/v1/kits`, {
+			method: 'POST',
+			headers: {
+			'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(createKitBody)
+		});
+		const data = await response.json();
+		kitId = data['id'];
+	}
+	catch(error){
+		console.error(error);
+	}
+}
 //We check status code and save the response in json to data.
 test('Check status code', async () => {
-	let responseCode;
+	var responseCode;
+	//First we create a new kit
+	await createKit();
+	//Then we delete the kit we just created
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/2`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/${kitId}`, {
 			method: 'DELETE',
 		});
 		responseCode = response.status;
@@ -19,7 +42,20 @@ test('Check status code', async () => {
 	}
 	expect(responseCode).toBe(200);
 });
-
-test('Check that "ok" is true', () => {
+//We check that the "ok" key in the response has a value of true
+test('Check that "ok" is true', async () => {
+	var data;
+	//First we create a new kit
+	await createKit();
+	//Then we delete the kit we just created
+	try {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/${kitId}`, {
+			method: 'DELETE',
+		});
+		data = await response.json();
+	} 
+	catch (error) {
+		console.error(error);
+	}
 	expect(data['ok']).toBe(true);
 });
