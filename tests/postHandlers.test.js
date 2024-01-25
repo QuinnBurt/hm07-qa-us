@@ -10,7 +10,7 @@ const requestBody = {
 	]
 }
 //We check that the status code in the response is 200.
-test('Check status code', async () => {
+test('Should be 200', async () => {
 	let responseCode;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
@@ -28,7 +28,7 @@ test('Check status code', async () => {
 expect(responseCode).toBe(200);
 });
 //We check if the last product ID is the one that we added. According to the kit_model, the last product by default is ID 92.
-test('Checking that items are added', async () =>{
+test('Should be 2', async () =>{
 	let data;
 	try{
 		const response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {

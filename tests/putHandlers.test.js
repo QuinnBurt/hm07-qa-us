@@ -38,7 +38,7 @@ async function createKit(){
 	}
 }
 //We check status code and save the response in json to data.
-test('Check status code', async () => {
+test('Should be 200', async () => {
 	let statusCode;
 	//First we create a new kit
 	await createKit();
@@ -60,7 +60,7 @@ test('Check status code', async () => {
 });
 
 //We check that the "ok" key in the response body has a value of true.
-test('Check that "ok" is true', async () => {
+test('Should be true', async () => {
 	let data;
 	await createKit();
 	try {

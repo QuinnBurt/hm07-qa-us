@@ -25,7 +25,7 @@ async function createKit(){
 	}
 }
 //We check status code and save the response in json to data.
-test('Check status code', async () => {
+test('Should be 200', async () => {
 	var responseCode;
 	//First we create a new kit
 	await createKit();
@@ -43,7 +43,7 @@ test('Check status code', async () => {
 	expect(responseCode).toBe(200);
 });
 //We check that the "ok" key in the response has a value of true
-test('Check that "ok" is true', async () => {
+test('Should be true', async () => {
 	var data;
 	//First we create a new kit
 	await createKit();

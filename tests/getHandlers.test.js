@@ -3,7 +3,7 @@ const config = require('../config');
 
 //Testing GET /api/v1/warehouses - Get a list of warehouses
 //First we check that the status code is 200
-test('Check status code', async () => {
+test('Should be 200', async () => {
 		let responseCode;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/warehouses`);
@@ -14,7 +14,7 @@ test('Check status code', async () => {
 	expect(responseCode).toBe(200);
 });
 //Then we check that the response body is not empty
-test('Check that response body is not empty', async () =>{
+test('Should be true', async () =>{
 	let data;
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/warehouses`);
